@@ -27,6 +27,11 @@ io.on("connection",(socket)=>{
     io.emit("receive_message", data); 
   })
 
+  socket.on("typing", (data) => {
+    console.log("Typing event", data);
+    socket.broadcast.emit("typing", data); // send to all except sender
+  })
+
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
   })

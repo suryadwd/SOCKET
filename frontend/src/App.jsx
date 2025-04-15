@@ -34,6 +34,10 @@ function App() {
     setMessage('');
   }
 
+  const handleEnterClick = (e) => {
+    if(e.key === "Enter") sendMessage()
+  }
+
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h2>🎉 React App Connected to WebSocket</h2>
@@ -41,7 +45,7 @@ function App() {
       {
         allMessages.map(((indx ) => {
           return (
-            <div key={indx.id} style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc' }}>
+            <div key={indx.id} style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', width: '400px', borderRadius: '5px' }}>
               <strong>Message ID:</strong> {indx.id} <br />
               <strong>Message:</strong> {indx.text}
             </div>
@@ -52,6 +56,7 @@ function App() {
         <input 
         type="text"
         value = {message} 
+        onKeyDown={handleEnterClick}
         onChange={ e => setMessage(e.target.value)}
         placeholder="Type your message here..."
         style={{ padding: '10px', width: '300px', fontSize: '16px' }}  
