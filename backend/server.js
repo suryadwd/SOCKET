@@ -18,8 +18,12 @@ const io = new Server(server, {
   }
 })
 
+const onlineUser = []
+
 io.on("connection",(socket)=>{
   console.log("New user connected", socket.id);
+  onlineUser.push(socket.id);
+  io.emit("update_user_list", onlineUser);
 
   socket.on("send_message",(data) => {
     console.log("Messgae recieved", data);
@@ -29,11 +33,13 @@ io.on("connection",(socket)=>{
 
   socket.on("typing", (data) => {
     console.log("Typing event", data);
-    socket.broadcast.emit("typing", data); // send to all except sender
+    socket.broadcast.emit("typing", data);
   })
 
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
+    onlineUser = onlineUser.filter(id => id !== socket.id);
+    io.emit("update_user_list", onlineUser);
   })
 
 })
