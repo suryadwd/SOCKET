@@ -34,6 +34,11 @@ function App() {
       console.log('❌ Disconnected from server with ID:', socket.id);
     });
 
+    return () => {
+      socket.off("connect");
+      socket.off("update_user_list");
+    };
+
   }, []);
 
   const sendMessage = () => {

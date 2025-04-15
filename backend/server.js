@@ -18,7 +18,7 @@ const io = new Server(server, {
   }
 })
 
-const onlineUser = []
+let onlineUser = []
 
 io.on("connection",(socket)=>{
   console.log("New user connected", socket.id);
