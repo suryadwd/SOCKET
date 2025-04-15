@@ -105,7 +105,7 @@ npm start
 
 ## 🧑‍💻 Author
 
-Made with ❤️ by **you**  
+Made with ❤️ by **SURYAKANT DWIVEDI**  
 Connect: [LinkedIn](#) | [GitHub](#) | [Portfolio](#)
 
 ---
